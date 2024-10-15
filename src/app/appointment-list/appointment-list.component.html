@@ -1,0 +1,48 @@
+<div class="card pb-4">
+  <div class="card-body">
+    <div class="row mb-3">
+      <h5 class="d-flex justify-content-center">Create Appointment</h5>
+    </div>
+    <div class="row">
+      <div class="col-5">
+        <input
+          [(ngModel)]="description"
+          class="form-control w-100 mx-2"
+          placeholder="New Appointment Description"
+          type="text"
+        />
+      </div>
+      <div class="col-5">
+        <input
+          class="form-control w-100 mx-2"
+          [(ngModel)]="newAppointmentDate"
+          placeholder="New Appointment Date"
+          type="date"
+        />
+      </div>
+      <div class="col-2 d-flex justify-content-end">
+        <button class="btn btn-primary" (click)="addAppointment()">
+          Create
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-3" *ngIf="appointments.length">
+  <div class="card-body">
+    <div class="row mb-3">
+      <h5 class="d-flex justify-content-center">Scheduled Appointment</h5>
+    </div>
+    <ul class="list-group" *ngFor="let appointment of appointments; index as i">
+      <li class="list-group-item d-flex justify-content-between my-2">
+        <span>{{ appointment?.id }}</span
+        ><span>{{ appointment?.title }}</span
+        ><span
+          >{{ appointment?.date | date : "dd/MM/yyyy"
+          }}<i class="ml-3 bi bi-trash" (click)="removeAppointment(i)"></i
+        ></span>
+      </li>
+    </ul>
+  </div>
+</div>
